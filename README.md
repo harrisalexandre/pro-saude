@@ -49,122 +49,31 @@ Mostra somente o que importa naquele momento:
 ### SOS Familiar
 Fluxo visual:
 
-```
-PRECISO DE AJUDA
-       ↓
-Enviando pedido
-       ↓
-Avisando família
-       ↓
-Pedido registrado
-       ↓
-Ligações para contatos
-```
-
-Nesta versão o SOS é **simulado**. Não existe envio real de localização, SMS, WhatsApp ou chamada automática.
-
-### Perfil
-Tela somente de consulta, sem transformar o idoso em administrador do sistema.
-
-## Central da família
-
-A família tem uma experiência diferente do idoso, com navegação lateral no desktop e navegação horizontal no mobile.
-
-### Visão geral
-- status do dia;
-- doses registradas;
-- doses perdidas;
-- contatos de emergência;
-- próximos remédios;
-- próxima consulta;
-- responsável;
-- ações rápidas.
-
-### Idosos vinculados
-O protótipo já suporta mais de um idoso:
-
-- adicionar;
-- editar;
-- selecionar;
-- remover;
-- dados separados por idoso.
-
-### Remédios
-CRUD completo:
-
-- nome;
-- dose;
-- formato;
-- vários horários;
-- frequência;
-- dias da semana;
-- intervalo em horas;
-- horário inicial;
-- observações;
-- excluir.
-
-### Consultas
-CRUD completo:
-
-- profissional;
-- especialidade;
-- local;
-- data;
-- hora;
-- retorno;
-- observações.
-
-### Responsável
-- nome;
-- telefone;
-- e-mail.
-
-### Emergência
-- vários contatos;
-- relação;
-- telefone;
-- prioridade;
-- remoção.
-
-### Histórico
-- remédios tomados;
-- consultas confirmadas;
-- SOS;
-- doses perdidas.
-
-### Configurações
-- repetição do lembrete;
-- tolerância para considerar uma dose perdida;
-- restauração do estado de demonstração.
-
-## Arquitetura atual
-
-O projeto continua deliberadamente sem framework ou build step:
-
-```
-HTML
+```text
+React
   ↓
-CSS
+Componentes / estado
   ↓
-JavaScript vanilla
-  ↓
-PorPertoStore
+PorPerto Store
   ↓
 localStorage
+  ↓
+Vite → dist → GitHub Pages
 ```
 
 Arquivos:
 
 ```
 pro-saude/
-├── index.html       # app do idoso
-├── painel.html      # central da família
-├── style.css        # design system
-├── state.js         # estado, regras e persistência
-├── app.js           # experiência do idoso
-├── painel.js        # experiência da família
-├── README.md
-└── .gitignore
+├── index.html / painel.html       # entradas Vite
+├── src/App.jsx                    # experiências React
+├── src/store.js                   # estado e persistência
+├── src/main.jsx                   # bootstrap React
+├── src/styles.css                 # ponte para o design system
+├── style.css                      # design system
+├── vite.config.js                 # configuração Vite
+├── package.json                   # dependências
+└── .github/workflows/deploy.yml  # deploy GitHub Pages
 ```
 
 ## Estado
@@ -273,20 +182,19 @@ O `PorPertoStore` foi mantido isolado justamente para facilitar a troca de Local
 
 ## Executar localmente
 
-Não há instalação de dependências.
+```bash
+npm install
+npm run dev
+```
+
+Para produção:
 
 ```bash
-python3 -m http.server 8080
+npm run build
+npm run preview
 ```
 
-Abra:
-
-```
-http://localhost:8080/
-http://localhost:8080/painel.html
-```
-
-Também funciona como site estático no GitHub Pages.
+O deploy para GitHub Pages é feito automaticamente pelo workflow do repositório.
 
 ## Reset da demonstração
 
