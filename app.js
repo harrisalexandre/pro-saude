@@ -105,7 +105,7 @@ function check(){
  if(n>=d.d&&!alerts[k]||n>=d.d&&Date.now()-alerts[k]>=repeat*60000){
    alerts[k]=Date.now();
    try{const C=window.AudioContext||window.webkitAudioContext;if(C){const c=new C,o=c.createOscillator(),g=c.createGain();o.frequency.value=660;g.gain.value=.08;o.connect(g).connect(c.destination);o.start();o.stop(c.currentTime+.45)}}catch{}
-   if("Notification"in window&&Notification.permission==="granted")try{new Notification("Hora do remédio",{body:d.m.name+" — "+d.m.dose})}catch{}
+   if(document.hidden&&"Notification"in window&&Notification.permission==="granted")try{new Notification("Hora do remédio",{body:d.m.name+" — "+d.m.dose,tag:"por-perto-"+k,requireInteraction:false})}catch{}
    msg("Hora do remédio: "+d.m.name);
  }
 }
