@@ -109,7 +109,7 @@ function check(){
    msg("Hora do remédio: "+d.m.name);
  }
 }
-app.addEventListener("click",e=>{
+document.addEventListener("click",e=>{
  const x=e.target.closest("[data-action]");if(!x)return;const a=x.dataset.action;
  if("Notification"in window&&Notification.permission==="default")Notification.requestPermission().catch(()=>{});
  if(a==="home")go("home");else if(a==="meds")go("meds");else if(a==="apts")go("apts");else if(a==="help")go("help");else if(a==="profile")go("profile");else if(a==="med")go("med",x.dataset.id);else if(a==="apt")go("apt",x.dataset.id);else if(a==="take")take(x.dataset.id,x.dataset.time);else if(a==="understand"){S().markApt(x.dataset.id,now(),elder().id);msg("Consulta registrada.");go("apts")}else if(a==="sos")startSos();
