@@ -1,0 +1,33 @@
+# Sistema operacional
+.DS_Store
+Thumbs.db
+
+# Editores
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Arquivos locais / temporários
+.env
+.env.*
+*.tmp
+*.temp
+
+# Testes locais
+coverage/
+playwright-report/
+
+# Builds e dependências caso o projeto evolua
+node_modules/
+dist/
+build/
+
+# Dados locais de desenvolvimento
+.local/
