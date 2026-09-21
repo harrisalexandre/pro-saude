@@ -1,301 +1,301 @@
 # Por Perto
 
-Solução web mobile-first de cuidado para pessoas idosas, com uma experiência extremamente simples para o idoso e um painel de configuração para familiares e cuidadores.
+**Por Perto** é uma aplicação web de cuidado familiar pensada para pessoas idosas, com duas experiências conectadas:
 
-> **Regra de ouro:** se uma pessoa de 65+ precisar perguntar como usar uma função, a UX falhou.
+- **App do idoso:** simples, grande e direto.
+- **Central da família:** completa, densa e feita para configurar e acompanhar.
 
-## Objetivo
+A proposta deixou de ser uma tela de mock e passou a funcionar como um pequeno produto: navegação entre telas, estado persistente, CRUD, histórico, lembretes e fluxo de SOS.
 
-O **Por Perto** reúne três módulos:
+## Acesso
 
-- **Remédio na Hora** — lembra o horário dos medicamentos e permite confirmar com um toque.
-- **Consulta Fácil** — mostra consultas, médico, local, horário e retorno.
-- **SOS Familiar** — permite pedir ajuda sem formulário ou navegação complexa.
+- App do idoso: `index.html`
+- Central da família: `painel.html`
+- GitHub Pages: https://harrisalexandre.github.io/pro-saude/
 
-O projeto possui duas experiências:
+## Experiência do idoso
 
-### Idoso
+### Início
+Mostra somente o que importa naquele momento:
 
-Interface extremamente simples:
+- saudação;
+- status do dia;
+- próximo remédio;
+- botão gigante **TOMEI**;
+- agenda do dia;
+- próxima consulta;
+- acesso rápido ao SOS;
+- responsável familiar.
 
-- máximo de poucos blocos de ação;
-- textos grandes;
-- botões grandes;
-- alto contraste;
-- sem cadastro;
-- sem configuração;
-- sem senha complexa;
-- ícones acompanhados de texto;
-- botão de SOS sempre acessível.
+### Remédios
+- linha do tempo dos horários;
+- doses já registradas;
+- doses pendentes;
+- detalhes do medicamento;
+- orientação;
+- múltiplos horários;
+- frequência diária, semanal, por intervalo ou quando necessário.
 
-### Familiar / cuidador
+### Consultas
+- lista de consultas;
+- data e horário;
+- profissional;
+- especialidade;
+- local;
+- retorno;
+- observações;
+- confirmação de leitura.
 
-Painel para configurar e acompanhar:
+### SOS Familiar
+Fluxo visual:
 
-- idosos vinculados;
-- medicamentos;
-- múltiplos horários por dia;
-- frequência;
-- consultas;
-- data de retorno;
-- responsável principal;
-- contatos de emergência;
-- acompanhamento diário;
-- histórico geral;
-- histórico de doses perdidas.
-
-## Tecnologia
-
-Projeto propositalmente simples:
-
-- HTML5
-- CSS3
-- JavaScript vanilla
-- LocalStorage
-- Web Audio API
-- Notification API
-
-Não utiliza:
-
-- frameworks;
-- bundlers;
-- npm;
-- backend;
-- banco de dados;
-- API externa.
-
-## Estrutura
-
-```text
-pro-saude/
-├── index.html       # Experiência do idoso
-├── painel.html      # Painel familiar/cuidador
-├── style.css        # Design system e responsividade
-├── state.js         # Estado mockado + localStorage
-├── app.js           # Experiência do idoso
-├── painel.js        # Experiência do familiar
-├── .gitignore
-└── README.md
+```
+PRECISO DE AJUDA
+       ↓
+Enviando pedido
+       ↓
+Avisando família
+       ↓
+Pedido registrado
+       ↓
+Ligações para contatos
 ```
 
-## Como executar
+Nesta versão o SOS é **simulado**. Não existe envio real de localização, SMS, WhatsApp ou chamada automática.
 
-Como não existe build step, basta servir a pasta com qualquer servidor HTTP estático.
+### Perfil
+Tela somente de consulta, sem transformar o idoso em administrador do sistema.
 
-Exemplo com Python:
+## Central da família
+
+A família tem uma experiência diferente do idoso, com navegação lateral no desktop e navegação horizontal no mobile.
+
+### Visão geral
+- status do dia;
+- doses registradas;
+- doses perdidas;
+- contatos de emergência;
+- próximos remédios;
+- próxima consulta;
+- responsável;
+- ações rápidas.
+
+### Idosos vinculados
+O protótipo já suporta mais de um idoso:
+
+- adicionar;
+- editar;
+- selecionar;
+- remover;
+- dados separados por idoso.
+
+### Remédios
+CRUD completo:
+
+- nome;
+- dose;
+- formato;
+- vários horários;
+- frequência;
+- dias da semana;
+- intervalo em horas;
+- horário inicial;
+- observações;
+- excluir.
+
+### Consultas
+CRUD completo:
+
+- profissional;
+- especialidade;
+- local;
+- data;
+- hora;
+- retorno;
+- observações.
+
+### Responsável
+- nome;
+- telefone;
+- e-mail.
+
+### Emergência
+- vários contatos;
+- relação;
+- telefone;
+- prioridade;
+- remoção.
+
+### Histórico
+- remédios tomados;
+- consultas confirmadas;
+- SOS;
+- doses perdidas.
+
+### Configurações
+- repetição do lembrete;
+- tolerância para considerar uma dose perdida;
+- restauração do estado de demonstração.
+
+## Arquitetura atual
+
+O projeto continua deliberadamente sem framework ou build step:
+
+```
+HTML
+  ↓
+CSS
+  ↓
+JavaScript vanilla
+  ↓
+PorPertoStore
+  ↓
+localStorage
+```
+
+Arquivos:
+
+```
+pro-saude/
+├── index.html       # app do idoso
+├── painel.html      # central da família
+├── style.css        # design system
+├── state.js         # estado, regras e persistência
+├── app.js           # experiência do idoso
+├── painel.js        # experiência da família
+├── README.md
+└── .gitignore
+```
+
+## Estado
+
+O estado atual usa:
+
+```
+por-perto-state-v2
+```
+
+O `state.js` também migra automaticamente a estrutura anterior `por-perto-state-v1`.
+
+O armazenamento é local ao navegador. Portanto, o protótipo **não sincroniza dois aparelhos reais**. Para isso será necessário um backend.
+
+## Lembretes
+
+O app verifica os horários periodicamente.
+
+Quando chega a hora:
+
+1. identifica uma dose pendente;
+2. tenta emitir som via Web Audio API;
+3. usa Notification API se a permissão estiver disponível;
+4. exibe aviso visual;
+5. repete conforme a configuração;
+6. para quando a dose é marcada como tomada.
+
+Navegadores podem restringir áudio e notificações automáticas.
+
+## Acessibilidade
+
+A interface foi desenhada mobile-first, com foco em:
+
+- texto grande;
+- contraste;
+- foco visível;
+- navegação por teclado;
+- áreas de toque amplas;
+- mensagens acompanhadas de texto;
+- redução de movimento;
+- poucas decisões na tela do idoso.
+
+A referência de acessibilidade considera a orientação da W3C sobre alvos de toque e interfaces móveis.
+
+## O que é protótipo e o que ainda precisa de backend
+
+### Funciona localmente
+- navegação;
+- CRUD;
+- persistência;
+- múltiplos idosos;
+- medicamentos;
+- consultas;
+- histórico;
+- doses perdidas;
+- lembretes;
+- SOS simulado;
+- contatos;
+- painel familiar.
+
+### Precisa de infraestrutura real
+- conta/autenticação da família;
+- banco PostgreSQL;
+- sincronização entre aparelhos;
+- push notification;
+- WhatsApp;
+- localização real no SOS;
+- chamadas automáticas;
+- permissões por usuário;
+- auditoria;
+- backup;
+- LGPD e governança de dados;
+- PWA/offline robusto.
+
+## Próxima arquitetura recomendada
+
+Quando o protótipo estiver aprovado visualmente:
+
+```
+                    ┌──────────────────┐
+                    │ App do idoso     │
+                    └────────┬─────────┘
+                             │
+                    HTTPS / API
+                             │
+┌──────────────────┐   ┌─────▼─────┐   ┌──────────────────┐
+│ Central família  │──►│ Backend   │◄──│ Notificações     │
+└──────────────────┘   └─────┬─────┘   │ Push / WhatsApp │
+                             │           └──────────────────┘
+                       ┌─────▼─────┐
+                       │ PostgreSQL│
+                       └───────────┘
+```
+
+O `PorPertoStore` foi mantido isolado justamente para facilitar a troca de LocalStorage por uma API posteriormente.
+
+## Princípios de UX
+
+1. **A família configura; o idoso utiliza.**
+2. **O idoso não deve precisar entender o sistema.**
+3. **A ação mais importante da tela deve ser evidente.**
+4. **Tamanho e clareza vêm antes de quantidade de informação.**
+5. **SOS sempre deve ser fácil de encontrar.**
+6. **Verde, amarelo e vermelho representam estados de segurança, não decoração.**
+7. **O painel pode ser complexo; o app do idoso não.**
+
+## Executar localmente
+
+Não há instalação de dependências.
 
 ```bash
 python3 -m http.server 8080
 ```
 
-Depois:
+Abra:
 
-```text
-http://localhost:8080/
 ```
-
-Painel:
-
-```text
+http://localhost:8080/
 http://localhost:8080/painel.html
 ```
 
-Também pode ser hospedado diretamente em serviços de páginas estáticas.
+Também funciona como site estático no GitHub Pages.
 
-## Estado compartilhado
+## Reset da demonstração
 
-O estado é armazenado em:
+No painel existe o botão **Restaurar demonstração**.
 
-```text
-localStorage
-└── por-perto-state-v1
-```
-
-Isso permite simular o backend durante o desenvolvimento.
-
-As duas interfaces usam o mesmo estado:
-
-```text
-index.html
-    ↓
- app.js
-    ↓
- state.js
-    ↓
-localStorage
-    ↑
- state.js
-    ↑
-painel.js
-    ↑
-painel.html
-```
-
-Alterações feitas no painel podem ser refletidas na experiência do idoso através do evento `storage`.
-
-## Lembrete de medicamentos
-
-O aplicativo verifica periodicamente os horários cadastrados.
-
-Fluxo:
-
-```text
-Relógio do dispositivo
-        ↓
-Horário cadastrado
-        ↓
-Remédio ainda pendente?
-        ↓
-      SIM
-        ↓
-Som de alerta
-        ↓
-Notification API
-        ↓
-Home do idoso
-```
-
-O som é criado diretamente com a **Web Audio API**, sem arquivo de áudio externo.
-
-### Observação importante
-
-Navegadores podem restringir reprodução automática de áudio e notificações até que o usuário tenha interagido com a página.
-
-Por isso o sistema solicita permissão para notificações após uma interação.
-
-## Doses perdidas
-
-O painel considera uma dose perdida quando:
-
-```text
-horário atual >= horário programado + tolerância
-```
-
-A tolerância padrão é:
-
-```text
-20 minutos
-```
-
-O valor pode ser alterado posteriormente quando o backend real for implementado.
-
-## SOS
-
-O fluxo simulado é:
-
-```text
-PRECISO DE AJUDA
-       ↓
-Enviando localização...
-       ↓
-Avisando família...
-       ↓
-Pronto!
-       ↓
-Ligações diretas
-```
-
-Atualmente o SOS é apenas simulado e registrado no estado local.
-
-Nenhuma localização real é enviada.
-
-## Acessibilidade
-
-O design foi pensado para pessoas com menor familiaridade tecnológica e possíveis limitações visuais ou motoras.
-
-Principais decisões:
-
-- corpo mínimo de aproximadamente 18px;
-- títulos maiores;
-- botões principais com aproximadamente 66px de altura;
-- áreas de toque superiores a 48px;
-- contraste elevado;
-- foco visível por teclado;
-- linguagem direta;
-- poucos elementos por tela;
-- sem dependência exclusiva de ícones;
-- suporte a `prefers-reduced-motion`;
-- layout mobile-first;
-- mensagens de confirmação explícitas;
-- cores de segurança reservadas para estados verde/amarelo/vermelho.
-
-## Estados de segurança
-
-As cores têm significado específico:
-
-| Estado | Significado |
-|---|---|
-| Verde | Tudo certo |
-| Amarelo | Existe pendência |
-| Vermelho | SOS acionado |
-
-Evita-se utilizar essas cores para elementos decorativos ou ações comuns.
-
-## Dados de demonstração
-
-O projeto inicia com dados mockados para facilitar os testes:
-
-- Dona Maria;
-- medicamentos de exemplo;
-- consulta de cardiologia;
-- responsável familiar;
-- contatos de emergência.
-
-Os dados são criados automaticamente no primeiro acesso.
-
-Para resetar completamente a demonstração, execute no console do navegador:
+Ou pelo console:
 
 ```javascript
+localStorage.removeItem("por-perto-state-v2");
 localStorage.removeItem("por-perto-state-v1");
 location.reload();
 ```
-
-## Roadmap
-
-### MVP atual
-
-- [x] Home do idoso
-- [x] Detalhe do medicamento
-- [x] Confirmação "TOMEI"
-- [x] Detalhe da consulta
-- [x] Confirmação "ENTENDI"
-- [x] SOS simulado
-- [x] Alerta sonoro
-- [x] Notification API
-- [x] Múltiplos horários
-- [x] Doses perdidas
-- [x] Responsável principal
-- [x] Contatos de emergência
-- [x] Histórico
-- [x] Painel familiar
-- [x] Sincronização local
-
-### Próximas etapas
-
-- [ ] Backend real
-- [ ] Autenticação do familiar
-- [ ] Banco de dados
-- [ ] Sincronização em tempo real
-- [ ] WhatsApp para notificações
-- [ ] Push notifications
-- [ ] Localização real no SOS
-- [ ] Ligação automática para contatos configurados
-- [ ] PWA / instalação no celular
-- [ ] Funcionamento offline robusto
-- [ ] Múltiplos idosos por conta familiar
-- [ ] Controle de permissões
-- [ ] Auditoria de eventos
-
-## Princípios do projeto
-
-1. **O idoso não configura.**
-2. **O idoso não precisa aprender o sistema.**
-3. **Uma ação importante deve exigir um toque.**
-4. **Informação essencial sempre vem acompanhada de texto claro.**
-5. **A família configura; o idoso utiliza.**
-6. **Segurança não deve depender de memória ou conhecimento tecnológico.**
-7. **O sistema deve ser simples antes de ser sofisticado.**
-
-## Licença
-
-Projeto privado em desenvolvimento por **Harris Alexandre**.
