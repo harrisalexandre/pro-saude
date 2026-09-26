@@ -1,1 +1,2 @@
-import React from "react";import{createRoot}from"react-dom/client";import App from"./App.jsx";import"./styles.css";createRoot(document.getElementById("root")).render(<React.StrictMode><App/></React.StrictMode>);
+import React,{useState}from"react";import{createRoot}from"react-dom/client";import App from"./App.jsx";import Landing from"./Landing.jsx";import"./styles.css";
+function Entry(){const[mode,setMode]=useState(location.pathname.includes("painel.html")?"app":"landing");return mode==="landing"?<Landing onLogin={()=>setMode("app")}/>:<App/>}createRoot(document.getElementById("root")).render(<React.StrictMode><Entry/></React.StrictMode>);
