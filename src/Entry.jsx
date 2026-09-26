@@ -1,0 +1,1 @@
+import React,{useState}from"react";import App from"./App.jsx";import Landing from"./Landing.jsx";export default function Entry(){const[login,setLogin]=useState(location.pathname.includes("painel.html"));return login?<App/>:<Landing onLogin={()=>setLogin(true)}/>}
