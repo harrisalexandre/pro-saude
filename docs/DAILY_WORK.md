@@ -37,7 +37,7 @@ Registro operacional curto entre sessões. O estado vigente fica em `docs/ai/CUR
 - Nenhuma alteração de banco ou código nesta etapa.
 - Relatório detalhado: `docs/ai/RLS_AUDIT.md`.
 
-**Próximo:** matriz Persona × Tabela × Operação e testes de isolamento.
+**Próximo:** validar isolamento por persona com duas ESFs/doutores e testar INSERT/UPDATE/DELETE.
 
 ## Regra de manutenção
 

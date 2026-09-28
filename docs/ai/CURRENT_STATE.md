@@ -70,7 +70,8 @@ O lockout em LocalStorage é complementar e não substitui rate limiting server-
 - Frontend não é autoridade de autorização.
 
 ### Pendente
-- matriz Persona × Tabela × Ação;
+- matriz Persona × Tabela × Ação — etapa 2 concluída;
+- testes de isolamento por persona — próxima etapa;
 - isolamento ESF → pacientes;
 - isolamento doutor → pacientes;
 - INSERT/UPDATE/DELETE por papel;
