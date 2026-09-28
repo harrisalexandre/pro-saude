@@ -19,7 +19,7 @@ jobs:
         with:
           node-version: 22
       - run: npm install
-      - run: npm run build
+      - run: npm run check
       - uses: actions/upload-pages-artifact@v4
         with:
           path: ./dist
