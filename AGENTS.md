@@ -88,7 +88,8 @@ Valide somente o que for relevante, mas valide de verdade.
 Quando disponível:
 - lint/typecheck;
 - testes unitários/integrados;
-- `npm run build`;
+- `npm run check` (validação padrão do agente, atualmente equivalente ao build);
+- `npm run build` quando necessário para diagnóstico;
 - validação das Edge Functions;
 - validação de RLS/policies;
 - fluxo manual por persona quando comportamento de usuário for alterado.
