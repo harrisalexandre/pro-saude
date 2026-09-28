@@ -54,6 +54,14 @@ O lockout em LocalStorage é complementar e não substitui rate limiting server-
 
 ## 3. Segurança
 
+### Auditoria estrutural — 28/09/2026
+- Etapa 1 concluída: schema, RLS, policies, funções e Edge Functions levantados.
+- Seis tabelas públicas auditadas com RLS habilitado.
+- Foram identificadas 16 ocorrências de policies permissivas sobrepostas pelo Security/Performance Advisor.
+- O modelo atual usa `is_admin`, `can_access_esf` e `can_access_patient` como funções centrais de autorização.
+- Nenhuma alteração de schema/policy foi feita nesta etapa.
+
+
 ### Confirmado
 - RLS habilitado nas tabelas públicas atuais.
 - Auth administrativo fora do browser.
