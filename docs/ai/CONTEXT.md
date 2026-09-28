@@ -2,7 +2,7 @@
 
 ## Produto
 
-**Por Perto** é a aplicação de cuidado conectado do projeto ProSaúde. A proposta aproxima pessoa idosa, família/cuidador e rede de atendimento em uma experiência simples.
+**Por Perto** é a aplicação de cuidado conectado do projeto ProSaúde. Aproxima pessoa idosa, família/cuidador e rede de atendimento em uma experiência simples.
 
 Regra central de UX:
 
@@ -11,17 +11,15 @@ Regra central de UX:
 ## Experiências
 
 ### Pessoa idosa
-
-Experiência simples, focada em:
+Experiência simples e direta:
 - próximo medicamento;
 - confirmação de tomada;
-- agenda/consultas;
+- consultas;
 - SOS Familiar;
-- responsável familiar;
-- mensagens claras e grandes.
+- responsável;
+- mensagens claras, grandes e acionáveis.
 
 ### Central administrativa
-
 Experiência mais densa para usuários autorizados:
 - Administração;
 - ESF;
@@ -37,7 +35,7 @@ Experiência mais densa para usuários autorizados:
 - `esf` — gestão de uma ESF;
 - `doctor` — profissional vinculado a uma ESF.
 
-Autorização real não deve ser inferida apenas pela UI.
+Autorização real é definida pelo backend/RLS, não pela interface.
 
 ## Stack
 
@@ -50,9 +48,8 @@ Autorização real não deve ser inferida apenas pela UI.
 - GitHub Pages no deploy atual;
 - LocalStorage em partes do protótipo legado.
 
-## Banco
+## Banco confirmado
 
-Tabelas confirmadas pela documentação da branch de trabalho:
 - `profiles`
 - `esfs`
 - `esf_members`
@@ -60,15 +57,36 @@ Tabelas confirmadas pela documentação da branch de trabalho:
 - `medications`
 - `appointments`
 
-Relações:
+Relações centrais:
 
-`auth.users → profiles`  
-`esfs → esf_members → profiles`  
-`esfs → patients`  
-`profiles(doctor) → patients`  
-`patients → medications`  
-`patients → appointments`
+`auth.users → profiles → esf_members/esfs → patients → medications/appointments`
 
-## Regra de fonte
+## Princípio de arquitetura
 
-Para fatos técnicos, conferir código e schema atual. Documentos de agente orientam o trabalho, mas não substituem a fonte técnica.
+O fluxo preferencial é:
+
+`Page/Component → Service → Supabase/Edge Function → Auth/RLS/Backend → Banco`
+
+Componentes não devem concentrar regras de persistência, autorização ou integrações privilegiadas.
+
+## Fonte da verdade
+
+Para fatos técnicos:
+1. código/schema atual;
+2. documentação técnica específica;
+3. documentos de agente.
+
+Os documentos orientam o trabalho, mas não substituem o estado real do código e banco.
+
+## Onde cada informação vive
+
+- Estado e fila: `CURRENT_STATE.md`
+- Funcionalidades: `FEATURES.md`
+- Trabalho recente: `DAILY_WORK.md`
+- Regras: `BUSINESS_RULES.md`
+- Arquitetura: `ARCHITECTURE.md`
+- Decisões: `DECISIONS.md`
+- Visão estável: este arquivo
+- Protocolo de execução: `AGENTS.md`
+
+Se a IA não conseguir descobrir “onde estamos” sem ler histórico de conversa, o estado está subdocumentado.

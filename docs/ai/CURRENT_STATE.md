@@ -1,45 +1,46 @@
 # Por Perto — Estado Atual
 
 **Atualizado em:** 28/09/2026  
-**Branch:** `main`  
+**Branch canônica:** `main`  
 **Produto:** ProSaúde / Por Perto  
 **Backend:** Supabase  
 **Status:** 🟡 **BASE FUNCIONAL EM CONSOLIDAÇÃO**
 
-## Estado consolidado
+## 1. Estado do produto
 
 A base atual cobre:
 
 **Landing → Login → Sessão → Perfil → Admin / ESF / Doutor**
 
-O modelo de domínio está preparado para:
+O domínio está preparado para:
 
 **Paciente → Medicamentos → Consultas → Experiência do idoso → SOS Familiar**
 
-Não considerar o produto pronto para operação real apenas porque autenticação e banco estão funcionando.
+Autenticação e banco funcionando não significam produto pronto para operação real.
 
-## Entrada e autenticação
+## 2. Consolidado
 
+### Entrada e autenticação
 - Landing pública.
 - CTA para área autenticada.
 - Supabase Auth.
 - Sessão persistente.
-- Perfil operacional carregado após login.
+- Perfil operacional após login.
 - Mensagem genérica para credenciais inválidas.
 - E-mail normalizado.
-- Lockout local após 5 tentativas inválidas por 15 minutos, como camada complementar.
+- Lockout local após 5 tentativas inválidas por 15 minutos.
 - Retorno da tela de login para a landing preservado.
 
-O lockout em LocalStorage não substitui rate limiting server-side/CAPTCHA.
+O lockout em LocalStorage é complementar e não substitui rate limiting server-side/CAPTCHA.
 
-## Papéis
+### Administração
+- Painel Admin.
+- Listagem de ESFs, doutores e pacientes.
+- Criação de ESF + acesso.
+- Criação de doutor vinculada à ESF.
+- Criação de paciente.
 
-- `admin` — administração da rede.
-- `esf` — gestão de uma ESF.
-- `doctor` — profissional vinculado a uma ESF.
-
-## Domínio
-
+### Domínio
 - `profiles`
 - `esfs`
 - `esf_members`
@@ -47,58 +48,55 @@ O lockout em LocalStorage não substitui rate limiting server-side/CAPTCHA.
 - `medications`
 - `appointments`
 
-Relacionamento central:
+### Edge Functions
+- `manage-staff-user`: fluxo atual para criação de ESF/doutor com validação e tentativa de rollback.
+- `admin-create-doctor`: fluxo alternativo/legado; não evoluir sem decisão explícita.
 
-`auth.users → profiles → esf_members/esfs → patients → medications/appointments`
+## 3. Segurança
 
-## Edge Functions
-
-### `manage-staff-user`
-
-Fluxo atual para criação de ESF e doutor, com validação de sessão/papel/vínculo e tentativa de rollback.
-
-### `admin-create-doctor`
-
-Existe como fluxo alternativo/legado e precisa de decisão antes de novas evoluções.
-
-## Segurança
-
-### Confirmado pela documentação da branch analisada
-
+### Confirmado
 - RLS habilitado nas tabelas públicas atuais.
 - Auth administrativo fora do browser.
 - `service_role` server-side.
 - Edge Functions protegidas por JWT.
 - Frontend não é autoridade de autorização.
 
-### Ainda precisa de auditoria
-
+### Pendente
 - matriz Persona × Tabela × Ação;
 - isolamento ESF → pacientes;
 - isolamento doutor → pacientes;
 - INSERT/UPDATE/DELETE por papel;
 - acesso direto via API;
 - grants e Edge Functions;
-- recuperação de senha;
+- recuperação segura de senha;
 - rate limiting/CAPTCHA;
-- E2E de cada persona.
+- E2E por persona;
+- auditoria/governança/LGPD.
 
-## Funcionalidades pendentes
+## 4. Funcionalidades em fila
 
-1. RLS e isolamento por persona.
+1. Fechar auditoria RLS/isolamento por persona.
 2. Recuperação segura de senha.
 3. CRUD completo de pacientes.
 4. Medicamentos reais e sincronizados.
 5. Consultas reais.
-6. Família/cuidador.
+6. Definir família/cuidador.
 7. SOS real.
 8. Experiência idoso consumindo Supabase.
 9. Notificações.
 10. WhatsApp, se permanecer no escopo.
 11. Auditoria/governança/LGPD.
 
-## Critério de pronto
+## 5. Critério de pronto
 
-Feature crítica só é considerada concluída quando houver implementação, validação técnica, backend/RLS, validação da persona, estados loading/erro/vazio, teste do fluxo principal e ausência de regressão relacionada.
+Feature crítica só é concluída quando houver implementação, validação técnica, backend/RLS quando aplicável, validação da persona, estados loading/erro/vazio, fluxo principal e regressão relacionada.
 
 > Build verde sozinho não prova Auth, RLS, UX ou integração.
+
+## 6. Próxima sequência
+
+1. Auditar matriz Persona × Tabela × Ação.
+2. Validar isolamento com duas sessões quando houver credenciais de homologação.
+3. Fechar CRUD de pacientes.
+4. Definir e implementar fluxos reais de medicamentos e consultas.
+5. Definir família/cuidador e SOS antes de integrar notificações/WhatsApp.

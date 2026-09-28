@@ -1,53 +1,75 @@
 # Por Perto — Decisões
 
-## Código/schema como fonte da verdade
+## 1. Código/schema como fonte da verdade
+**Status:** vigente.
 
-Fatos verificáveis devem ser confirmados no código e Supabase atual.
+Fatos verificáveis devem ser confirmados no código e Supabase atuais.
 
-## Segurança backend-first
+## 2. Segurança backend-first
+**Status:** vigente.
 
 Autorização real fica em backend/RLS/Edge Functions. UI melhora UX, mas não protege contra chamadas manipuladas.
 
-## Auth administrativo fora do browser
+## 3. Auth administrativo fora do browser
+**Status:** vigente.
 
 Criação administrativa de usuários Auth ocorre em Edge Function, nunca diretamente pelo cliente.
 
-## RLS como barreira definitiva
+## 4. RLS como barreira definitiva
+**Status:** vigente.
 
 Tabelas públicas mantêm RLS e policies coerentes com o modelo de acesso. Novas tabelas expostas exigem revisão de RLS.
 
-## Experiência idoso-first
+## 5. Experiência idoso-first
+**Status:** vigente.
 
-A experiência do idoso permanece deliberadamente mais simples que a administrativa.
+A experiência da pessoa idosa permanece deliberadamente mais simples que a administrativa.
 
-## Família/cuidador separado
+## 6. Família/cuidador separado
+**Status:** diretriz de produto.
 
 Família/cuidador configura e acompanha; pessoa idosa executa ações essenciais. O modelo de permissões futuro deve refletir isso.
 
-## SOS sem promessa clínica
+## 7. SOS sem promessa clínica
+**Status:** vigente.
 
 SOS é alerta/comunicação até existir integração real.
 
-## Dados de saúde não são inferidos
+## 8. Dados de saúde não são inferidos
+**Status:** vigente.
 
 Não inventar dose, frequência, diagnóstico ou orientação clínica.
 
-## Erro não vira vazio
+## 9. Erro não vira vazio
+**Status:** vigente.
 
 Falha de backend deve ser distinguida de lista vazia.
 
-## Lockout local é complementar
+## 10. Lockout local é complementar
+**Status:** vigente.
 
 LocalStorage pode reduzir tentativas na mesma sessão, mas não é controle de segurança suficiente.
 
-## Uma fonte de verdade por fluxo
+## 11. Uma fonte de verdade por fluxo
+**Status:** vigente.
 
 Ao migrar LocalStorage para Supabase, não manter dois estados concorrentes sem estratégia de sincronização.
 
-## Documentação por responsabilidade
+## 12. Documentação por responsabilidade
+**Status:** vigente.
 
-Contexto, estado, regras, arquitetura e decisões ficam separados em `docs/ai`.
+Contexto, estado, regras, arquitetura e decisões ficam separados em `docs/ai`; catálogo e diário ficam em `docs/`.
 
-## Feature exige validação
+## 13. Processo agent-ready
+**Status:** vigente.
+
+Cada etapa relevante deve seguir:
+
+`investigar → implementar → documentar → validar → commit`
+
+Pedidos curtos devem ser interpretados pela intenção e pelo contexto do projeto, sem ampliar indiscriminadamente o escopo.
+
+## 14. Feature exige validação
+**Status:** vigente.
 
 Build verde não prova Auth, RLS, UX ou integração; fluxos críticos exigem validação funcional.

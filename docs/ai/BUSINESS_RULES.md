@@ -1,11 +1,11 @@
 # Por Perto — Regras de Negócio
 
-Somente regras confirmadas entram aqui.
+Somente regras confirmadas entram aqui. Hipóteses ficam fora até decisão explícita.
 
 ## Experiência
 
 1. A pessoa idosa recebe experiência mais simples que a central.
-2. Família/cuidador configura e acompanha; pessoa idosa utiliza.
+2. Família/cuidador configura e acompanha; pessoa idosa executa ações essenciais.
 3. A ação principal deve ser evidente.
 4. SOS deve ser fácil de encontrar.
 5. Texto grande, contraste, foco e áreas de toque amplas são requisitos.
@@ -14,7 +14,7 @@ Somente regras confirmadas entram aqui.
 
 1. `admin` administra a rede.
 2. `esf` representa a gestão de uma ESF.
-3. `doctor` representa doutor vinculado a ESF.
+3. `doctor` representa doutor vinculado a uma ESF.
 4. ESF possui membros em `esf_members`.
 5. `manager` é o vínculo responsável pela ESF.
 6. `doctor` é o vínculo profissional.

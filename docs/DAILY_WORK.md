@@ -1,39 +1,37 @@
 # Por Perto — Diário de Trabalho
 
+Registro operacional curto entre sessões. O estado vigente fica em `docs/ai/CURRENT_STATE.md`; este arquivo registra contexto recente e validações relevantes.
+
 ## 28/09/2026
 
-### Consolidação
+### Consolidação documental
 
-Foi feita uma análise comparativa entre a branch `feat/landing-login` e a `main`.
+- Comparação do modelo documental do ProSaúde com o padrão operacional do KarateERP.
+- Estrutura `docs/ai/` mantida como única memória técnica de agentes.
+- Protocolo de agentes reforçado em `AGENTS.md`.
+- Fluxo pedido → intenção → dependências → regressões → implementação → validação formalizado.
+- Definition of Done e formato de comunicação adicionados.
+- Papéis, fonte da verdade, arquitetura e responsabilidades documentais explicitados.
 
-### Incorporado
+### Validação
 
-- hardening do login com mensagem genérica;
-- normalização de e-mail;
-- lockout local após tentativas consecutivas;
-- preservação da navegação de retorno para a landing;
-- documentação operacional para agentes;
-- contexto, estado, regras, arquitetura e decisões;
-- catálogo de features.
-
-### Preservado da main
-
-- documentação geral `docs/`;
-- arquitetura e roadmap já consolidados;
-- experiência atual da landing e painéis;
-- estrutura React/Vite/Supabase existente.
-
-### Decisão
-
-A documentação de agente fica em `docs/ai/`, enquanto a documentação geral permanece em `docs/`. Assim evitamos misturar documentação operacional de desenvolvimento com documentação de produto.
+- Documentos existentes revisados.
+- Conteúdo funcional preservado.
+- Nenhuma alteração de código ou schema nesta etapa.
 
 ### Próximos passos
 
-- auditar RLS por persona e operação;
-- validar isolamento com duas sessões;
-- implementar recuperação segura de senha;
-- fechar CRUD de pacientes;
-- migrar medicamentos e consultas para fluxos reais;
-- definir família/cuidador;
-- definir SOS real;
-- manter documentação sincronizada com mudanças estruturais.
+- Auditar RLS por persona/operação.
+- Validar isolamento com duas sessões.
+- Fechar CRUD de pacientes.
+- Definir fluxos reais de medicamentos e consultas.
+- Definir família/cuidador e SOS.
+
+## Regra de manutenção
+
+Ao concluir uma etapa relevante:
+1. atualizar o estado vigente;
+2. registrar a execução aqui;
+3. atualizar somente documentos afetados;
+4. validar;
+5. fechar com um commit Conventional Commits.
