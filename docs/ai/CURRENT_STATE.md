@@ -71,13 +71,23 @@ O lockout em LocalStorage é complementar e não substitui rate limiting server-
 - Reatribuição de paciente exige novo doutor ativo, com perfil doctor e vínculo doctor na mesma ESF.
 - Exclusão de paciente permanece somente para admin.
 
+### Etapa 3 — testes de isolamento RLS — 28/09/2026
+- Validados cenários com sessão `authenticated`, gestor, admin e anônimo.
+- Confirmado que gestor acessa somente sua ESF e não exclui pacientes.
+- Confirmado que anônimo não acessa pacientes.
+- Encontrada e corrigida recursão de RLS em `can_access_patient()`.
+- Teste Doutor A × Doutor B e reatribuição completa permanecem pendentes por ausência de contas Auth de homologação.
+- Relatório: `docs/ai/RLS_ISOLATION_TESTS.md`.
+
 ### Pendente
-- testes de isolamento por persona — próxima etapa;
+- teste real Doutor A × Doutor B;
+- teste real de reatribuição gestor → doutor;
+- acesso direto via API;
+- grants e Edge Functions;
 - isolamento ESF → pacientes;
 - isolamento doutor → pacientes;
 - INSERT/UPDATE/DELETE por papel;
 - acesso direto via API;
-- grants e Edge Functions;
 - recuperação segura de senha;
 - rate limiting/CAPTCHA;
 - E2E por persona;
@@ -105,7 +115,7 @@ Feature crítica só é concluída quando houver implementação, validação t�
 
 ## 6. Próxima sequência
 
-1. Testar isolamento RLS com sessões/personas.
+1. Criar/usar fixtures Auth de homologação e concluir os cenários Doutor A × Doutor B.
 2. Fechar CRUD de pacientes respeitando o novo contrato.
 3. Definir e implementar fluxos reais de medicamentos e consultas.
 4. Definir família/cuidador e SOS antes de integrar notificações/WhatsApp.
