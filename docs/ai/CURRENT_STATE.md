@@ -1,7 +1,7 @@
 # Por Perto — Estado Atual
 
 **Atualizado em:** 28/09/2026  
-**Branch canônica:** `main`  
+**Branch canônica:** main  
 **Produto:** ProSaúde / Por Perto  
 **Backend:** Supabase  
 **Status:** 🟡 **BASE FUNCIONAL EM CONSOLIDAÇÃO**
@@ -41,16 +41,16 @@ O lockout em LocalStorage é complementar e não substitui rate limiting server-
 - Criação de paciente.
 
 ### Domínio
-- `profiles`
-- `esfs`
-- `esf_members`
-- `patients`
-- `medications`
-- `appointments`
+- profiles
+- esfs
+- esf_members
+- patients
+- medications
+- appointments
 
 ### Edge Functions
-- `manage-staff-user`: fluxo atual para criação de ESF/doutor com validação e tentativa de rollback.
-- `admin-create-doctor`: fluxo alternativo/legado; não evoluir sem decisão explícita.
+- manage-staff-user: fluxo atual para criação de ESF/doutor com validação e tentativa de rollback.
+- admin-create-doctor: fluxo alternativo/legado; não evoluir sem decisão explícita.
 
 ## 3. Segurança
 
@@ -58,19 +58,20 @@ O lockout em LocalStorage é complementar e não substitui rate limiting server-
 - Etapa 1 concluída: schema, RLS, policies, funções e Edge Functions levantados.
 - Seis tabelas públicas auditadas com RLS habilitado.
 - Foram identificadas 16 ocorrências de policies permissivas sobrepostas pelo Security/Performance Advisor.
-- O modelo atual usa `is_admin`, `can_access_esf` e `can_access_patient` como funções centrais de autorização.
-- Nenhuma alteração de schema/policy foi feita nesta etapa.
+- O modelo usa is_admin, can_access_esf e can_access_patient como funções centrais de autorização.
 
-
-### Confirmado
-- RLS habilitado nas tabelas públicas atuais.
-- Auth administrativo fora do browser.
-- `service_role` server-side.
-- Edge Functions protegidas por JWT.
-- Frontend não é autoridade de autorização.
+### Matriz de autorização — 28/09/2026
+- Etapa 2 concluída.
+- Contrato validado:
+  - doutor enxerga somente pacientes atribuídos a ele;
+  - gestor e doutor não excluem pacientes;
+  - gestor pode reatribuir paciente para outro doutor da própria ESF.
+- RLS ajustado para refletir essas três decisões.
+- can_access_patient() agora trata gestor por vínculo de manager e doutor por patients.doctor_id.
+- Reatribuição de paciente exige novo doutor ativo, com perfil doctor e vínculo doctor na mesma ESF.
+- Exclusão de paciente permanece somente para admin.
 
 ### Pendente
-- matriz Persona × Tabela × Ação — etapa 2 concluída;
 - testes de isolamento por persona — próxima etapa;
 - isolamento ESF → pacientes;
 - isolamento doutor → pacientes;
@@ -104,8 +105,7 @@ Feature crítica só é concluída quando houver implementação, validação t�
 
 ## 6. Próxima sequência
 
-1. Auditar matriz Persona × Tabela × Ação.
-2. Validar isolamento com duas sessões quando houver credenciais de homologação.
-3. Fechar CRUD de pacientes.
-4. Definir e implementar fluxos reais de medicamentos e consultas.
-5. Definir família/cuidador e SOS antes de integrar notificações/WhatsApp.
+1. Testar isolamento RLS com sessões/personas.
+2. Fechar CRUD de pacientes respeitando o novo contrato.
+3. Definir e implementar fluxos reais de medicamentos e consultas.
+4. Definir família/cuidador e SOS antes de integrar notificações/WhatsApp.
