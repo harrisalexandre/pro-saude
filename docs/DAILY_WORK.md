@@ -47,3 +47,18 @@ Ao concluir uma etapa relevante:
 3. atualizar somente documentos afetados;
 4. validar;
 5. fechar com um commit Conventional Commits.
+
+### 28/09/2026 — Etapa 3 — Testes de isolamento RLS
+
+- Testada sessão `authenticated` com claim JWT do gestor.
+- Confirmado acesso do gestor ao próprio escopo e bloqueio de ESF/paciente externo.
+- Confirmado bloqueio de DELETE de paciente para gestor.
+- Confirmado que anônimo não recebe pacientes.
+- Confirmado acesso administrativo para admin.
+- Encontrados e corrigidos dois problemas reais: acesso ao schema `private` e recursão de `can_access_patient()` com RLS.
+- Helpers RLS endurecidos com `SECURITY DEFINER` e `search_path` fixado.
+- RPC anônimo dos helpers removido.
+- Fixtures usadas em transações com rollback.
+- Relatório detalhado: `docs/ai/RLS_ISOLATION_TESTS.md`.
+
+**Pendente:** contas Auth reais de homologação para testar Doutor A × Doutor B e reatribuição gestor → doutor.
