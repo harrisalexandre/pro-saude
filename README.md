@@ -6,6 +6,12 @@ O projeto nasceu como protótipo local e está em evolução para uma arquitetur
 
 > **Princípio central de UX:** se uma pessoa idosa precisa pedir ajuda para entender o aplicativo, a interface falhou.
 
+## Aplicação
+
+Acesse a versão publicada do **Por Perto**:
+
+**https://harrisalexandre.github.io/pro-saude/**
+
 ## Contexto do projeto
 
 O ProSaúde é um projeto institucional da **CNA Ctrl Play — Santiago/RS**, orientado pelo professor **Harris Alexandre**, com desenvolvimento dos alunos **Otavio, Vitor e João**.
