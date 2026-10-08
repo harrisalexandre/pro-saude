@@ -1,0 +1,1 @@
+# GitHub\n\nEste documento registra práticas de colaboração e desenvolvimento usadas no projeto.\n\n- Issues para problemas e decisões.\n- Pull requests para mudanças rastreáveis.\n- Validação antes do merge.\n- Documentação acompanha mudanças relevantes.\n
