@@ -26,7 +26,7 @@ export default function Landing({ onLogin }) {
     <div className="landing">
       <header className="landing-nav">
         <a className="brand" href="#inicio">
-          <span className="brand-mark"><img src="/pro-saude/por-perto-logo.webp" alt="Por Perto" style={{width:"100%",height:"100%",objectFit:"contain",display:"block",background:"#fff",borderRadius:"13px"}} /></span>
+          <span className="brand-mark"><img src="/pro-saude/por-perto-logo.jpg?v=3" alt="Por Perto" style={{width:"100%",height:"100%",objectFit:"contain",display:"block",background:"#fff",borderRadius:"13px"}} /></span>
           <span className="brand-copy"><strong>Por Perto</strong><small>cuidado conectado</small></span>
         </a>
 
@@ -138,7 +138,7 @@ export default function Landing({ onLogin }) {
         </Reveal>
       </main>
 
-      <footer className="landing-footer"><div className="footer-brand"><span className="brand-mark"><img src="/pro-saude/por-perto-logo.webp" alt="Por Perto" style={{width:"100%",height:"100%",objectFit:"contain",display:"block",background:"#fff",borderRadius:"13px"}} /></span><strong>Por Perto</strong></div><span>ProSaúde · cuidado conectado</span></footer>
+      <footer className="landing-footer"><div className="footer-brand"><span className="brand-mark"><img src="/pro-saude/por-perto-logo.jpg?v=3" alt="Por Perto" style={{width:"100%",height:"100%",objectFit:"contain",display:"block",background:"#fff",borderRadius:"13px"}} /></span><strong>Por Perto</strong></div><span>ProSaúde · cuidado conectado</span></footer>
     </div>
   );
 }
