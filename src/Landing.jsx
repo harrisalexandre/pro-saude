@@ -22,43 +22,6 @@ function Reveal({ children, delay = 0, className = "" }) {
 }
 
 export default function Landing({ onLogin }) {
-  return () => { mounted = false; subscription.unsubscribe(); };
-  }, []);
-
-  useEffect(() => {
-    if (!switchOpen) {
-      if (wasSwitchOpen.current) {
-        switchTrigger.current?.focus();
-        wasSwitchOpen.current = false;
-      }
-      return;
-    }
-    wasSwitchOpen.current = true;
-    switchCancel.current?.focus();
-    const onKeyDown = event => {
-      if (event.key === "Escape" && !switchBusy) setSwitchOpen(false);
-    };
-    window.addEventListener("keydown",onKeyDown);
-    return () => window.removeEventListener("keydown",onKeyDown);
-  },[switchOpen,switchBusy]);
-
-  async function confirmAccountSwitch() {
-    if (switchBusy) return;
-    setSwitchBusy(true);
-    setSwitchError("");
-    try {
-      const {error} = await supabase.auth.signOut();
-      if (error) throw error;
-      setHasSession(false);
-      setSwitchOpen(false);
-      onLogin();
-    } catch (error) {
-      console.error("Erro ao trocar de conta:",error);
-      setSwitchError("Não foi possível sair agora. Verifique sua conexão e tente novamente.");
-      setSwitchBusy(false);
-    }
-  }
-
   return (
     <div className="landing">
       <header className="landing-nav">
