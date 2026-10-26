@@ -91,3 +91,15 @@
 .logout-confirm-btn{border:1px solid #a84d3c;background:#a84d3c;color:#fff;border-radius:11px;font:700 11px "DM Sans";cursor:pointer}
 .logout-confirm-btn:hover:not(:disabled){background:#8e3e30}
 @media(max-width:480px){.logout-actions{flex-direction:column-reverse}.logout-actions button{width:100%}}
+
+
+/* Troca de conta acessível */
+.account-switch-btn{min-height:48px!important;font-size:14px!important;line-height:1.35;white-space:normal}
+.admin-sidebar .account-switch-btn{height:auto;min-height:48px;padding:10px 12px;text-align:center}
+.admin-header .account-switch-btn{height:auto;min-height:48px;font-size:14px!important}
+.logout-modal .modal-head h2{font-size:clamp(21px,4vw,25px)}
+.logout-description{font-size:16px;line-height:1.65}
+.logout-actions button{min-height:48px;font-size:14px!important;line-height:1.35}
+.logout-error{margin:16px 0 0;padding:12px;border-radius:10px;background:#f7e9e3;color:#8e3e30;font-size:14px;line-height:1.5}
+.account-switch-btn:focus-visible,.logout-actions button:focus-visible,.logout-modal .icon-btn:focus-visible{outline:3px solid #a9c18f;outline-offset:3px}
+@media(max-width:480px){.logout-actions button{padding:12px 14px}.logout-modal{padding:22px}}
