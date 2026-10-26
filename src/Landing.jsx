@@ -93,11 +93,9 @@ export default function Landing({ onLogin }) {
         </nav>
 
         <div className="landing-account-actions">
-          {hasSession && (
-            <button className="nav-switch-account" type="button" onClick={() => { setSwitchError(""); setSwitchOpen(true); }} aria-haspopup="dialog">
-              Trocar de conta
-            </button>
-          )}
+          <button className="nav-switch-account" type="button" onClick={() => { setSwitchError(""); setSwitchOpen(true); }} aria-haspopup="dialog">
+            Trocar de conta
+          </button>
           <button className="nav-login" type="button" onClick={onLogin}>
             Entrar <ArrowUpRight size={16} />
           </button>
