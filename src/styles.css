@@ -119,3 +119,6 @@
 
 @media(max-width:850px){.admin-sidebar .sidebar-session-actions{grid-column:1/-1;grid-row:3;width:100%;display:flex;flex-direction:column;gap:10px}.admin-sidebar .sidebar-session-actions .logout-btn{display:block;width:100%;margin:0;min-height:44px;height:auto}}
 .admin-sidebar .sidebar-session-actions{display:flex;flex-direction:column;gap:10px;width:100%;margin-top:auto}.admin-sidebar .sidebar-session-actions .logout-btn{display:block;width:100%;margin:0;min-height:44px;height:auto}
+
+/* A troca de conta fica apenas na barra lateral. */
+.admin-header .account-switch-header-btn{display:none!important}
