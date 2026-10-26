@@ -116,3 +116,6 @@
 .admin-header .account-switch-header-btn{display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto;min-height:48px;height:auto;padding:12px 18px;font-size:14px!important;line-height:1.35;white-space:normal;border:2px solid var(--primary);font-weight:700}
 .admin-header .account-switch-header-btn:focus-visible{outline:3px solid #a9c18f;outline-offset:3px}
 @media(max-width:600px){.admin-header .account-switch-header-btn{width:100%;min-height:52px;align-self:stretch}}
+
+@media(max-width:850px){.admin-sidebar .sidebar-session-actions{grid-column:1/-1;grid-row:3;width:100%;display:flex;flex-direction:column;gap:10px}.admin-sidebar .sidebar-session-actions .logout-btn{display:block;width:100%;margin:0;min-height:44px;height:auto}}
+.admin-sidebar .sidebar-session-actions{display:flex;flex-direction:column;gap:10px;width:100%;margin-top:auto}.admin-sidebar .sidebar-session-actions .logout-btn{display:block;width:100%;margin:0;min-height:44px;height:auto}
