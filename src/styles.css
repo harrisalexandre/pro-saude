@@ -103,3 +103,15 @@
 .logout-error{margin:16px 0 0;padding:12px;border-radius:10px;background:#f7e9e3;color:#8e3e30;font-size:14px;line-height:1.5}
 .account-switch-btn:focus-visible,.logout-actions button:focus-visible,.logout-modal .icon-btn:focus-visible{outline:3px solid #a9c18f;outline-offset:3px}
 @media(max-width:480px){.logout-actions button{padding:12px 14px}.logout-modal{padding:22px}}
+
+
+/* Acesso à conta no site público */
+.landing-account-actions{display:flex;align-items:center;justify-content:flex-end;gap:10px}
+.nav-switch-account{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:10px 15px;border:1px solid var(--line);border-radius:11px;background:var(--surface);color:var(--primary);font:700 14px/1.35 "DM Sans",sans-serif;cursor:pointer}
+.nav-switch-account:hover{background:#fff}
+.nav-login{min-height:48px;cursor:pointer}
+.nav-switch-account:focus-visible,.nav-login:focus-visible{outline:3px solid #a9c18f;outline-offset:3px}
+.account-switch-backdrop{z-index:110}
+.account-switch-modal .logout-description{font-size:16px;line-height:1.65}
+@media(max-width:620px){.landing-account-actions{gap:7px}.nav-switch-account,.landing-nav .nav-login{padding:10px 11px;font-size:13px}.landing-account-actions{max-width:100%}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
