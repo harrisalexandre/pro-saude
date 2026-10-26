@@ -1,5 +1,4 @@
-import React,{useEffect,useRef,useState} from "react";
-import { supabase } from "./supabase";
+import React from "react";
 import { motion } from "motion/react";
 import {
   ArrowUpRight, Bell, CalendarDays, Check, ChevronRight, Heart,
@@ -23,25 +22,7 @@ function Reveal({ children, delay = 0, className = "" }) {
 }
 
 export default function Landing({ onLogin }) {
-  const [hasSession,setHasSession] = useState(false);
-  const [switchOpen,setSwitchOpen] = useState(false);
-  const [switchBusy,setSwitchBusy] = useState(false);
-  const [switchError,setSwitchError] = useState("");
-  const switchTrigger = useRef(null);
-  const switchCancel = useRef(null);
-  const wasSwitchOpen = useRef(false);
-
-  useEffect(() => {
-    let mounted = true;
-    supabase.auth.getSession().then(({data}) => {
-      if (mounted) setHasSession(Boolean(data?.session));
-    }).catch(() => {
-      if (mounted) setHasSession(false);
-    });
-    const {data:{subscription}} = supabase.auth.onAuthStateChange((_event,session) => {
-      if (mounted) setHasSession(Boolean(session));
-    });
-    return () => { mounted = false; subscription.unsubscribe(); };
+  return () => { mounted = false; subscription.unsubscribe(); };
   }, []);
 
   useEffect(() => {
@@ -93,29 +74,10 @@ export default function Landing({ onLogin }) {
         </nav>
 
         <div className="landing-account-actions">
-          <button className="nav-switch-account" type="button" onClick={() => { setSwitchError(""); setSwitchOpen(true); }} aria-haspopup="dialog">
-            Trocar de conta
-          </button>
           <button className="nav-login" type="button" onClick={onLogin}>
             Entrar <ArrowUpRight size={16} />
           </button>
         </div>
-        {switchOpen && (
-          <div className="modal-backdrop account-switch-backdrop" onMouseDown={event => { if (event.target === event.currentTarget && !switchBusy) setSwitchOpen(false); }}>
-            <section className="modal account-switch-modal" role="dialog" aria-modal="true" aria-labelledby="site-switch-title" aria-describedby="site-switch-description">
-              <div className="modal-head">
-                <h2 id="site-switch-title">Trocar de conta?</h2>
-                <button type="button" className="icon-btn" aria-label="Fechar confirmação" disabled={switchBusy} onClick={() => setSwitchOpen(false)}>×</button>
-              </div>
-              <p id="site-switch-description" className="logout-description">Você vai sair da conta atual e voltar à tela de entrada. Depois, poderá entrar com outra conta.</p>
-              {switchError && <p className="logout-error" role="alert">{switchError}</p>}
-              <div className="logout-actions">
-                <button ref={switchCancel} type="button" className="secondary-btn" disabled={switchBusy} onClick={() => setSwitchOpen(false)}>Continuar nesta conta</button>
-                <button type="button" className="logout-confirm-btn" disabled={switchBusy} onClick={confirmAccountSwitch}>{switchBusy ? "Saindo…" : "Sim, trocar de conta"}</button>
-              </div>
-            </section>
-          </div>
-        )}
       </header>
 
       <main>
