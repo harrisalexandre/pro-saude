@@ -1,6 +1,6 @@
 # Por Perto — Estado Atual
 
-**Atualizado em:** 28/09/2026  
+**Atualizado em:** 09/11/2026  
 **Branch canônica:** main  
 **Produto:** ProSaúde / Por Perto  
 **Backend:** Supabase  
@@ -96,7 +96,7 @@ O lockout em LocalStorage é complementar e não substitui rate limiting server-
 ## 4. Funcionalidades em fila
 
 1. Fechar auditoria RLS/isolamento por persona.
-2. Recuperação segura de senha.
+2. Validar recuperação de senha e login ponta a ponta (SMTP/redirects/deploy).
 3. CRUD completo de pacientes.
 4. Medicamentos reais e sincronizados.
 5. Consultas reais.
