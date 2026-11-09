@@ -62,3 +62,11 @@ Ao concluir uma etapa relevante:
 - Relatório detalhado: `docs/ai/RLS_ISOLATION_TESTS.md`.
 
 **Pendente:** contas Auth reais de homologação para testar Doutor A × Doutor B e reatribuição gestor → doutor.
+
+## 09/11/2026 — Autenticação e recuperação de senha
+
+- Login passa a distinguir credenciais inválidas de indisponibilidade, rede e limite de requisições.
+- Adicionado fluxo de solicitação de redefinição por e-mail e definição de nova senha via Supabase Auth.
+- Entrada reconhece callback de recuperação e preserva retorno ao login.
+- Pendente: validar URLs de redirecionamento no Supabase, envio real de e-mail, fluxo ponta a ponta e build em ambiente de deploy.
+- Testes de isolamento RLS seguem como próxima etapa após validação de Auth.
