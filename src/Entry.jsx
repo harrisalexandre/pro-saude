@@ -3,7 +3,7 @@ import App from"./App.jsx";
 import Landing from"./Landing.jsx";
 
 function getView(){
-  return location.pathname.endsWith("painel.html")||location.hash==="#login"?"app":"landing";
+  return location.pathname.endsWith("painel.html")||location.hash==="#login"||new URLSearchParams(location.search).get("auth")==="recovery"?"app":"landing";
 }
 
 export default function Entry(){
