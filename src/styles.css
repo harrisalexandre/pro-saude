@@ -131,3 +131,9 @@
 .password-toggle:hover{background:#edf2e9;color:var(--primary)}
 .password-toggle:focus-visible{outline:3px solid #a9c18f;outline-offset:1px}
 .password-toggle svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+
+.password-toggle svg .eye-outline,.password-toggle svg .eye-pupil{transition:opacity .2s ease,transform .25s ease;transform-origin:center}
+.password-toggle svg .eye-slash{stroke:currentColor;stroke-width:2.2;stroke-linecap:round;opacity:1;transform:scale(1);transform-origin:center;transition:opacity .22s ease,transform .28s cubic-bezier(.2,.8,.2,1)}
+.password-toggle svg .eye-slash.is-hidden{opacity:0;transform:scale(.35) rotate(-18deg)}
+.password-toggle:active svg{transform:scale(.9)}
+@media(prefers-reduced-motion:reduce){.password-toggle svg,.password-toggle svg *{transition:none!important}}
