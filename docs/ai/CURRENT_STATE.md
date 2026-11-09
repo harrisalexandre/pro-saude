@@ -119,3 +119,11 @@ Feature crítica só é concluída quando houver implementação, validação t�
 2. Fechar CRUD de pacientes respeitando o novo contrato.
 3. Definir e implementar fluxos reais de medicamentos e consultas.
 4. Definir família/cuidador e SOS antes de integrar notificações/WhatsApp.
+## 09/11/2026 — Refinamento CRUD administrativo (validação parcial)
+
+- Implementados no frontend: edição de ESF, criação/edição/exclusão de paciente por admin, criação/edição de paciente por gestor ESF; exclusão de paciente permanece restrita ao admin conforme policies atuais.
+- Listagens de admin/ESF agora diferenciam carregamento, erro e vazio; admin lista doutores e pacientes individualmente.
+- Validação de vínculo doutor/ESF adicionada no fluxo de gravação de pacientes; campos opcionais vazios são normalizados para null.
+- Policies atuais verificadas via leitura SQL: DELETE patients apenas admin; UPDATE patients admin/gestor sob condições; UPDATE esfs admin ou membro com acesso.
+- **Ainda pendente:** teste de build/CI, teste autenticado E2E por persona, revisão de Edge Function e fluxo de edição/desativação de doutores e gestão de contas Auth. Nenhuma operação destrutiva foi executada no banco de produção.
+- **Atenção:** a validação de vínculo doutor/ESF no frontend não substitui uma restrição no backend para operações administrativas; revisar enforcement no banco antes de considerar CRUD plenamente validado.
