@@ -22,7 +22,7 @@ Memória funcional cumulativa do produto.
 - `✅` Normalização de e-mail.
 - `✅` Mensagem genérica de credenciais inválidas.
 - `🟡` Lockout local como camada complementar.
-- `⏳` Recuperação segura de senha.
+- `🟡` Recuperação de senha implementada no frontend; falta validar e-mail, redirects e fluxo ponta a ponta.
 - `⏳` Rate limiting/CAPTCHA.
 
 ## Administração
